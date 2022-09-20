@@ -8,14 +8,13 @@ WorkingDirectory=/mnt/efs/gretel
 # c6g.xlarge : 6000M
 # c6g.large : 3000M
 ExecStart=/usr/bin/screen -DmS spigot java -Xms6000M -Xmx6000M -jar ./spigot-server.jar --nogui
-ExecStop=/usr/bin/screen -S spigot "say メンテナンスです！あと30秒でサーバーが落ちます〜！\n"
+ExecStop=/usr/bin/screen -S spigot -X stuff "say メンテナンスです！あと30秒でサーバーが落ちます〜！\n"
 ExecStop=/usr/bin/sleep 10
-ExecStop=/usr/bin/screen -S spigot "say メンテナンスです！あと20秒でサーバーが落ちます〜！\n"
+ExecStop=/usr/bin/screen -S spigot -X stuff "say メンテナンスです！あと20秒でサーバーが落ちます〜！\n"
 ExecStop=/usr/bin/sleep 10
-ExecStop=/usr/bin/screen -S spigot "say メンテナンスです！あと10秒でサーバーが落ちます〜！\n"
+ExecStop=/usr/bin/screen -S spigot -X stuff "say メンテナンスです！あと10秒でサーバーが落ちます〜！\n"
 ExecStop=/usr/bin/sleep 10
-ExecStop=/usr/bin/screen -S spigot "save-all\n"
-ExecStop=/usr/bin/screen -S spigot "stop\n"
+ExecStop=/usr/bin/screen -S spigot -X stuff "stop\n"
 Restart=always
 TimeoutStopSec=120
 KillMode=none
