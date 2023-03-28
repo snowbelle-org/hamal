@@ -39,7 +39,7 @@ $ sudo systemctl start hamal
 ### Attach minecraft server console
 
 ```bash
-$ screen -r spigot
+$ screen -r hamal
 ```
 
 ## LICENSE
