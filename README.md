@@ -9,7 +9,9 @@ Minecraft (Spigot) server daemon &amp; toolchain forked from [botan-party/gretel
 - Use / install optimal JDK
 - Auto restart on failure
 
-## Installation
+## Usage
+
+### Installation
 
 1. Create EC2 instance
     - AMI: Amazon Linux 2
@@ -32,6 +34,12 @@ $ ./setup.sh install $MINECRAFT_VERSION
 
 ```bash
 $ sudo systemctl start hamal
+```
+
+### Attach minecraft server console
+
+```bash
+$ screen -r spigot
 ```
 
 ## LICENSE
