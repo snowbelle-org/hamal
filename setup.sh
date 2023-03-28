@@ -46,7 +46,7 @@ function install() {
   for FILE in $(ls -A './spigot'); do
     ln -sf "${CURRENT_PATH}/spigot/${FILE}" "${INSTALLATION_PATH}/${FILE}"
   done
-  sudo ln -sf $CURRENT_PATH/hamal.service /etc/systemd/system/
+  sudo ln -sf $CURRENT_PATH/systemd/hamal.service /etc/systemd/system/
 
   # run service
   sudo systemctl daemon-reload
