@@ -2,10 +2,11 @@
 set -e
 
 SUB_COMMAND=$1
+SCREEN_NAME=hamal
 SERVER_PATH="/mnt/efs/gretel"
 
 start() {
-  local SPIGOT_ARGS NEED_UPGRADE_MARKER_FILE SCREEN_NAME MEM_CAPS
+  local SPIGOT_ARGS NEED_UPGRADE_MARKER_FILE MEM_CAPS
 
   SPIGOT_ARGS="--nogui"
 
@@ -17,7 +18,6 @@ start() {
   fi
 
   cd "${SERVER_PATH}"
-  SCREEN_NAME=spigot
 
   # run server in screen
   # optimal memory caps:
@@ -33,10 +33,13 @@ start() {
 }
 
 stop() {
-  screen -S spigot -X stuff "say メンテナンスです！あと10秒でサーバーが落ちます〜！\n"
-  sleep 10
-  screen -S spigot -X stuff "save-all\n"
-  screen -S spigot -X stuff "stop\n"
+  # stop if server process is live
+  if screen -list | grep -q $SCREEN_NAME; then
+    screen -S $SCREEN_NAME -X stuff "say メンテナンスです！あと10秒でサーバーが落ちます〜！\n"
+    sleep 10
+    screen -S $SCREEN_NAME -X stuff "save-all\n"
+    screen -S $SCREEN_NAME -X stuff "stop\n"
+  fi
 }
 
 case $SUB_COMMAND in
