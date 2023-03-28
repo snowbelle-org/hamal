@@ -43,7 +43,7 @@ function install() {
   mv "$CURRENT_PATH/spigot-$VERSION.jar" "$INSTALLATION_PATH/spigot-server.jar"
 
   # make symlinks to manage
-  for $FILE in $(ls -A './spigot'); do
+  for FILE in $(ls -A './spigot'); do
     ln -sf "${CURRENT_PATH}/spigot/${FILE}" "${INSTALLATION_PATH}/${FILE}"
   done
   sudo ln -sf $CURRENT_PATH/hamal.service /etc/systemd/system/
