@@ -1,0 +1,15 @@
+[Unit]
+Description=Minecraft Spigot Server
+After=network-online.target
+
+[Service]
+User=ec2-user
+WorkingDirectory=/mnt/efs/gretel
+ExecStart=/bin/bash manage.sh start
+ExecStop=/bin/bash manage.sh stop
+Restart=on-failure
+TimeoutStopSec=30
+KillMode=none
+
+[Install]
+WantedBy=multi-user.target
